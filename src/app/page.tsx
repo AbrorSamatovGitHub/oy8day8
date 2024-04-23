@@ -1,9 +1,14 @@
-import Image from "next/image";
-
-export default function Home() {
+import Card from "@/component/Card";
+import { getData } from "@/service/todo";
+import { Form } from "../component/form";
+export default async function Home() {
+  const data = await getData()
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>khbxs</h1>
+    <main >
+      <Form/>
+      {data.map((todo)=>(
+       <Card key={todo.id} {...todo}/>
+      ))}
     </main>
   );
 }
